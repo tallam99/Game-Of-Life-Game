@@ -60,3 +60,7 @@ crashlytics-build.properties
 
 # Lockfile preventing upload
 UnityLockfile
+
+381V Game of Life Game/Temp/
+381V Game of Life Game/Library/
+381V Game of Life Game/Logs/
