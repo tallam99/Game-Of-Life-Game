@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ControlGrid : MonoBehaviour
 {
+    private GameObject[,] gridClones;
+    private bool[,] gridState;
+    private bool[,] prevState;
+    private bool[,] ruleset;
+
     public GameObject gridObject;
     public int gridx;
     public int gridy;
     public float gridOffset = 1f;
     public Vector3 gridOrigin = Vector3.zero;
-    private GameObject[,] gridClones;
-    private bool[,] gridState;
-    private bool[,] prevState;
-    private bool[,] ruleset = new bool[2, 9];
     public float nextUpdateTime;
     public float updatePeriod;
 
@@ -31,6 +32,16 @@ public class ControlGrid : MonoBehaviour
             nextUpdateTime += updatePeriod;
             UpdateGrid();
         }
+    }
+
+    void setGridState(bool[,] gridState)
+    {
+        this.gridState = gridState;
+    }
+
+    void setRuleset(bool[,] ruleset)
+    {
+        this.ruleset = ruleset;
     }
 
     // instantiates global variables
