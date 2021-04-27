@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO
+using System.IO;
+using System;
 using UnityEngine;
 
-public class ParseInput : MonoBehaviour
+public class InputParser : MonoBehaviour
 {
     private StreamReader reader;
     private bool[,] gridState;
@@ -29,36 +30,35 @@ public class ParseInput : MonoBehaviour
         }
         while (line == "");
 
+        string[] gridims = line.Split(' ');
+        gridx = Int32.Parse(gridims[0]);
+        gridy = Int32.Parse(gridims[1]);
+
+        controller.setGridX(gridx);
+        controller.setGridY(gridy);
+
+        gridState = new bool[gridx, gridy];
+
+        do
+        {
+            line = readLine();
+        }
+        while (line == "");
+
         int num_cells = Int32.Parse(line);
         int[,] init_pos = new int[num_cells, 2];
 
-        // Read all block locations, store largest x and y coords for grid sizing
-        int max_x, max_y = 0;
+        // Read all block locations
         for(int idx = 0; idx < num_cells; idx++)
         {
-            int[] coords = Array.ConvertAll(readLine().Split(" "), s => Int32.Parse(s));
-            int x_pos = coords[0];
-            int y_pos = coords[1];
+            line = readLine();
+            string[] coords = line.Split(' ');
+            int x_pos = Int32.Parse(coords[0]);
+            int y_pos = Int32.Parse(coords[1]);
 
-            if(x_pos > max_x)
-            {
-                max_x = x_pos;
-            }
-            if(y_pos > max_y)
-            {
-                max_y = y_pos;
-            }
+            Debug.Log(x_pos + ", " + y_pos);
 
-            init_pos[idx, 0] = x_pos;
-            init_pos[idx, 1] = y_pos;
-        }
-
-        gridState = new bool[max_x, max_y];
-
-        // Fill grid state with initial config for passing to controller
-        for(int idx = 0; idx < num_cells-num_cells; idx++)
-        {
-            gridState[init_pos[idx, 0], init_pos[idx, 1]] = true;
+            gridState[x_pos, y_pos] = true;
         }
 
         // Read remaining whitespace/comments between initial config and custom rules.
@@ -73,14 +73,14 @@ public class ParseInput : MonoBehaviour
 
         for(int idx = 0; idx < num_rules; idx++)
         {
-            int[] rule = Array.ConvertAll(readLine().Split(" "), s => Int32.Parse(s));
-            ruleset[rule[0], rule[1]] = rule[2];
+            string[] rule = readLine().Split(' ');
+            ruleset[Int32.Parse(rule[0]), Int32.Parse(rule[1])] = Convert.ToBoolean(Int32.Parse(rule[2]));
         }
 
         reader.Close();
 
-        controller.setGridState(gridState);
-        controller.setRuleset(ruleset);
+        this.controller.setGridState(gridState);
+        this.controller.setRuleset(ruleset);
     }
 
     string readLine()

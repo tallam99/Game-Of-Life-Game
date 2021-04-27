@@ -8,10 +8,10 @@ public class ControlGrid : MonoBehaviour
     private bool[,] gridState;
     private bool[,] prevState;
     private bool[,] ruleset;
+    private int gridx;
+    private int gridy;
 
     public GameObject gridObject;
-    public int gridx;
-    public int gridy;
     public float gridOffset = 1f;
     public Vector3 gridOrigin = Vector3.zero;
     public float nextUpdateTime;
@@ -20,7 +20,9 @@ public class ControlGrid : MonoBehaviour
     // called before the first frame update
     void Start()
     {
-        InstantiateGlobals();
+        gridClones = new GameObject[gridx, gridy];
+        prevState = new bool[gridx, gridy];
+        //InstantiateGlobals();
         SpawnGrid();
     }
 
@@ -34,14 +36,24 @@ public class ControlGrid : MonoBehaviour
         }
     }
 
-    void setGridState(bool[,] gridState)
+    public void setGridState(bool[,] gridState)
     {
         this.gridState = gridState;
     }
 
-    void setRuleset(bool[,] ruleset)
+    public void setRuleset(bool[,] ruleset)
     {
         this.ruleset = ruleset;
+    }
+
+    public void setGridX(int gridx)
+    {
+        this.gridx = gridx;
+    }
+
+    public void setGridY(int gridy)
+    {
+        this.gridy = gridy;
     }
 
     // instantiates global variables

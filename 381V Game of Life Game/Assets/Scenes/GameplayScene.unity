@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -231,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 908237413}
   - component: {fileID: 908237412}
+  - component: {fileID: 908237414}
   m_Layer: 0
   m_Name: GridController
   m_TagString: Untagged
@@ -251,12 +252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridObject: {fileID: 760770958}
-  gridx: 20
-  gridy: 20
   gridOffset: 1
   gridOrigin: {x: 0, y: 0, z: 0}
   nextUpdateTime: 5
-  updatePeriod: 1
+  updatePeriod: 0.5
 --- !u!4 &908237413
 Transform:
   m_ObjectHideFlags: 0
@@ -271,6 +270,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &908237414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908237411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827e7a8edf83dce4da1919510d8cbd2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input_path: C:/Users/Tarek/Downloads/GoLG_example_input.txt
+  controller: {fileID: 908237412}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
