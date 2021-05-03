@@ -13,6 +13,7 @@ public class InputParser : MonoBehaviour
 
     public string input_path;
     public ControlGrid controller;
+    public Transform playerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,10 @@ public class InputParser : MonoBehaviour
             int x_pos = Int32.Parse(coords[0]);
             int y_pos = Int32.Parse(coords[1]);
 
-            Debug.Log(x_pos + ", " + y_pos);
+            if(idx == 0)
+            {
+                playerPosition.position = new Vector3(x_pos, 5, y_pos);
+            }
 
             gridState[x_pos, y_pos] = true;
         }
@@ -74,7 +78,7 @@ public class InputParser : MonoBehaviour
         for(int idx = 0; idx < num_rules; idx++)
         {
             string[] rule = readLine().Split(' ');
-            ruleset[Int32.Parse(rule[0]), Int32.Parse(rule[1])] = Convert.ToBoolean(Int32.Parse(rule[2]));
+            ruleset[Int32.Parse(rule[0]), Int32.Parse(rule[1])] = true;
         }
 
         reader.Close();

@@ -20,6 +20,20 @@ public class ControlGrid : MonoBehaviour
     // called before the first frame update
     void Start()
     {
+        int difficulty = PlayerPrefs.GetInt("difficulty");
+        if (difficulty == 0)
+        {
+            updatePeriod = 1f;
+        }
+        if (difficulty == 1)
+        {
+            updatePeriod = 0.5f;
+        }
+        if (difficulty == 2)
+        {
+            updatePeriod = 0.25f;
+        }
+
         gridClones = new GameObject[gridx, gridy];
         prevState = new bool[gridx, gridy];
         //InstantiateGlobals();
