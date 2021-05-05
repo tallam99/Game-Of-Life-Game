@@ -12,7 +12,7 @@ public class InputParser : MonoBehaviour
     private int gridx, gridy;
 
     public string input_path;
-    public ControlGrid controller;
+    public GridController controller;
     public Transform playerPosition;
 
     // Start is called before the first frame update

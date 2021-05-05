@@ -9,7 +9,6 @@ public class PlayerViewController : MonoBehaviour
     private Vector2 last_input_event; // last received non-zero input value
     private float input_lag_timer; // time since last received non-zero input value
 
-
     public Vector2 sensitivity; // Maximum speed in degrees/s
     public Vector2 acceleration; // rotation accleration in degrees/second
     public float input_lag_period;
