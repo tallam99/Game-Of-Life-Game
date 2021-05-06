@@ -24,6 +24,8 @@ public class PlayerMovementController : MonoBehaviour
     public LayerMask ground_mask;
     public float jump_height;
 
+    public AudioSource jumpAudioData;
+
     private void Awake()
     {
         instance = this;
@@ -63,6 +65,7 @@ public class PlayerMovementController : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && is_grounded)
             {
+                jumpAudioData.Play();
                 velocity.y = Mathf.Sqrt(jump_height * -2f * gravity);
             }
 

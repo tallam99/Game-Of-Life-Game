@@ -22,6 +22,7 @@ public class GridController : MonoBehaviour
     public Vector3 gridOrigin;
     public float updatePeriod;
     public int transparentIter;
+    public AudioSource switchAudioData;
 
     private void Awake()
     {
@@ -112,6 +113,7 @@ public class GridController : MonoBehaviour
     // updates grid according to ruleset
     private void UpdateGrid()
     {
+        switchAudioData.Play();
         prevState = gridState.Clone() as bool[,];
         for (int idx = 0; idx < gridx; idx++)
         {
