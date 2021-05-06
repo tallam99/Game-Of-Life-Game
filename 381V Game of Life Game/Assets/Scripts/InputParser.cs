@@ -10,9 +10,9 @@ public class InputParser : MonoBehaviour
     private bool[,] gridState;
     private bool[,] ruleset = new bool[2, 9];
     private int gridx, gridy;
+    private bool wrapGrid;
 
     public string input_path;
-    public GridController controller;
     public Transform playerPosition;
 
     // Start is called before the first frame update
@@ -35,10 +35,21 @@ public class InputParser : MonoBehaviour
         gridx = Int32.Parse(gridims[0]);
         gridy = Int32.Parse(gridims[1]);
 
-        controller.setGridX(gridx);
-        controller.setGridY(gridy);
-
+        GridController.instance.setGridX(gridx);
+        GridController.instance.setGridY(gridy);
         gridState = new bool[gridx, gridy];
+
+        // Wrap grid boolean
+        line = readLine();
+        if (Int32.Parse(line) == 0)
+        {
+            wrapGrid = false;
+        }
+        else
+        {
+            wrapGrid = true;
+        }
+        GridController.instance.setWrapGrid(wrapGrid);
 
         do
         {
@@ -83,8 +94,8 @@ public class InputParser : MonoBehaviour
 
         reader.Close();
 
-        this.controller.setGridState(gridState);
-        this.controller.setRuleset(ruleset);
+        GridController.instance.setGridState(gridState);
+        GridController.instance.setRuleset(ruleset);
     }
 
     string readLine()

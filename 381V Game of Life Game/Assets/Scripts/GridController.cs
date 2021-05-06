@@ -10,14 +10,18 @@ public class GridController : MonoBehaviour
     private bool[,] gridState;
     private bool[,] prevState;
     private bool[,] ruleset;
+    private int[,] aliveCounts;
     private int gridx;
     private int gridy;
+    public bool wrapGrid;
     private float nextUpdateTime = float.PositiveInfinity;
 
     public GameObject gridObject;
+    public GameObject gridObjectTransparent;
     public float gridOffset;
     public Vector3 gridOrigin;
     public float updatePeriod;
+    public int transparentIter;
 
     private void Awake()
     {
@@ -28,7 +32,7 @@ public class GridController : MonoBehaviour
     {
         gridClones = new GameObject[gridx, gridy];
         prevState = new bool[gridx, gridy];
-        // InstantiateGlobals();
+        aliveCounts = new int[gridx, gridy];
         SetDifficulty();
         SpawnGrid();
     }
@@ -62,26 +66,9 @@ public class GridController : MonoBehaviour
         this.gridy = gridy;
     }
 
-    // instantiates global variables
-    private void InstantiateGlobals()
+    public void setWrapGrid(bool wrapGrid)
     {
-        gridClones = new GameObject[gridx, gridy];
-        gridState = new bool[gridx, gridy];
-        prevState = new bool[gridx, gridy];
-        // glider for testing, but eventually load initial state from input file
-        gridState[0, 0] = true;
-        gridState[1, 1] = true;
-        gridState[2, 0] = true;
-        gridState[2, 1] = true;
-        gridState[1, 2] = true;
-        // game of life ruleset encoding, but eventually load rulset from input file
-            // first index encodes whether current cell is alive or dead (0 for dead, 1 for alive)
-            // second index encodes number of alive neighbors (from 0 to 8)
-            // true means cell will be alive next iteration
-            // false means cell will be dead next iteration
-        ruleset[0, 3] = true; // if cell dead and has 3 neighbors, birth new cell
-        ruleset[1, 2] = true; // if cell alive and has 2 neighbors, remain alive
-        ruleset[1, 3] = true; // if cell alive and has 3 neighbors, remain alive
+        this.wrapGrid = wrapGrid;
     }
 
     private void SetDifficulty()
@@ -89,15 +76,15 @@ public class GridController : MonoBehaviour
         int difficulty = PlayerPrefs.GetInt("difficulty");
         if (difficulty == 0)
         {
-            updatePeriod = 1f;
+            updatePeriod = 2f;
         }
         if (difficulty == 1)
         {
-            updatePeriod = 0.5f;
+            updatePeriod = 1f;
         }
         if (difficulty == 2)
         {
-            updatePeriod = 0.25f;
+            updatePeriod = 0.5f;
         }
     }
 
@@ -111,6 +98,7 @@ public class GridController : MonoBehaviour
                 if (gridState[idx, idy] == true)
                 {
                     SpawnCell(idx, idy);
+                    aliveCounts[idx, idy] += 1;
                 }
             }
         }
@@ -134,11 +122,20 @@ public class GridController : MonoBehaviour
                 {
                     gridState[idx, idy] = false;
                     DespawnCell(idx, idy);
+                    aliveCounts[idx, idy] = 0;
                 }
                 else if (prevState[idx, idy] == false && ruleset[0, numAlive] == true)
                 {
                     gridState[idx, idy] = true;
                     SpawnCell(idx, idy);
+                }
+                else if (aliveCounts[idx, idy] >= transparentIter)
+                {
+                    SpawnTransparent(idx, idy);
+                }
+                if (gridState[idx, idy])
+                {
+                    aliveCounts[idx, idy] += 1;
                 }
             }
         }
@@ -152,9 +149,22 @@ public class GridController : MonoBehaviour
         {
             for (int idy = y - 1; idy <= y + 1; idy++)
             {
-                if (prevState[WrapAround(idx, gridx), WrapAround(idy, gridy)] == true && (idx != x || idy != y))
+                if (wrapGrid)
                 {
-                    numAlive += 1;
+                    if (prevState[WrapAround(idx, gridx), WrapAround(idy, gridy)] == true && (idx != x || idy != y))
+                    {
+                        numAlive += 1;
+                    }
+                }
+                else
+                {
+                    if (idx >= 0 && idx < gridx && idy >= 0 && idy < gridy)
+                    {
+                        if (prevState[idx, idy] == true && (idx != x || idy != y))
+                        {
+                            numAlive += 1;
+                        }
+                    }
                 }
             }
         }
@@ -188,5 +198,14 @@ public class GridController : MonoBehaviour
     private void DespawnCell(int x, int y)
     {
         Destroy(gridClones[x, y]);
+    }
+
+    // despawns gridObject and spawns gridObjectTransparent at position x, y
+    private void SpawnTransparent(int x, int y)
+    {
+        DespawnCell(x, y);
+        Vector3 pos = new Vector3(x * gridOffset, 0, y * gridOffset) + gridOrigin; // Iterate through grid, moving prefab vector to custom spawn (if any)
+        Quaternion rot = Quaternion.identity;
+        gridClones[x, y] = Instantiate(gridObjectTransparent, pos, rot) as GameObject;
     }
 }

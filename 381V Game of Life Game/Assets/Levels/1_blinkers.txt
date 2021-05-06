@@ -1,0 +1,25 @@
+# Level Name
+7 7 # Grid size
+0 # Wrap grid
+
+# Initial Configuration
+12 # Number of alive cells
+1 1 # Player spawn
+0 1
+2 1
+4 1
+5 1
+6 1
+0 5
+1 5
+2 5
+4 5
+5 5
+6 5
+
+
+# Game of Life Rules
+3 # Number of rules
+0 3
+1 2
+1 3
