@@ -35,6 +35,10 @@ public class PlayerViewController : MonoBehaviour
             last_input_event = input;
             input_lag_timer = 0;
         }
+        if((Mathf.Approximately(0, input.x) && Mathf.Approximately(0, input.y)) == true && input_lag_timer >= input_lag_period)
+        {
+            input = new Vector2(0, 0);
+        }
 
         return input;
     }

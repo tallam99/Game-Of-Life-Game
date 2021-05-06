@@ -11,7 +11,7 @@ public class TimerController : MonoBehaviour
 
     public Text timerText;
     private bool timerActive;
-    private float currentTime;
+    private float currentTime = 0f;
 
     private void Awake()
     {
@@ -27,7 +27,6 @@ public class TimerController : MonoBehaviour
     public void StartTimer()
     {
         timerActive = true;
-        currentTime = 0f;
         StartCoroutine(UpdateTimer());
     }
 
@@ -47,5 +46,10 @@ public class TimerController : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public float GetCurrentTime()
+    {
+        return currentTime;
     }
 }

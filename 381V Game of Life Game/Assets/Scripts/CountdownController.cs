@@ -25,7 +25,11 @@ public class CountdownController : MonoBehaviour
         }
 
         countdownText.text = message;
-        GameController.instance.BeginGame();
+        // If player dies before countdown finishes, don't restart the game.
+        if (!GameOverController.instance.isEnded())
+        {
+            GameController.instance.BeginGame();
+        }
 
         yield return new WaitForSeconds(1f);
         countdownText.gameObject.SetActive(false);

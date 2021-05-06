@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlayerMovementController : MonoBehaviour
     private Vector3 velocity;
     private bool is_grounded;
     private bool playerAlive;
+
+    private Vector3 lastPosition;
+    private float totalDistance;
 
     public CharacterController controller;
     public float speed;
@@ -28,6 +32,8 @@ public class PlayerMovementController : MonoBehaviour
     private void Start()
     {
         playerAlive = true;
+        totalDistance = 0;
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -47,6 +53,12 @@ public class PlayerMovementController : MonoBehaviour
 
             Vector3 move_dir = transform.right * x + transform.forward * z;
 
+            float distance = Vector3.Distance(lastPosition, transform.position);
+            totalDistance += distance;
+            lastPosition = transform.position;
+
+            distance += Mathf.Sqrt(move_dir.x * move_dir.x + move_dir.z + move_dir.z);
+
             controller.Move(move_dir * speed * Time.deltaTime);
 
             if (Input.GetButtonDown("Jump") && is_grounded)
@@ -58,6 +70,11 @@ public class PlayerMovementController : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
         }
+    }
+
+    public float GetDistance()
+    {
+        return totalDistance;
     }
 
     public void Die()
