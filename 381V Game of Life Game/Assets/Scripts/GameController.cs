@@ -6,6 +6,25 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
 
+    public AudioSource jumpAudioData;
+    public AudioSource switchAudioData;
+
+    private void Start()
+    {
+        if(PlayerPrefs.GetInt("sound") == 0)
+        {
+            jumpAudioData.mute = true;
+            switchAudioData.mute = true;
+        }
+        else
+        {
+            jumpAudioData.mute = false;
+            switchAudioData.mute = false;
+            jumpAudioData.volume = 1.0f;
+            switchAudioData.volume = 1.0f;
+        }
+    }
+
     private void Awake()
     {
         instance = this;
