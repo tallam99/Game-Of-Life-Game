@@ -8,6 +8,7 @@ public class OptionsMenuDriver : MonoBehaviour
 {
     public Slider difficultySlider;
     public Toggle soundToggle;
+    public Toggle musicToggle;
     public Dropdown levelDropdown;
 
     public void Start()
@@ -27,6 +28,7 @@ public class OptionsMenuDriver : MonoBehaviour
 
         PlayerPrefs.SetInt("difficulty", (int)difficultySlider.value);
         PlayerPrefs.SetInt("sound", 1);
+        PlayerPrefs.SetInt("music", 1);
         PlayerPrefs.SetString("level", levelDropdown.options[levelDropdown.value].text);
     }
 
@@ -45,6 +47,18 @@ public class OptionsMenuDriver : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("sound", 0);
+        }
+    }
+
+    public void SetMusic()
+    {
+        if (musicToggle.isOn)
+        {
+            PlayerPrefs.SetInt("music", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("music", 0);
         }
     }
 
