@@ -14,6 +14,7 @@ public class InputParser : MonoBehaviour
 
     public string input_path;
     public Transform playerPosition;
+    public float gridOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +71,7 @@ public class InputParser : MonoBehaviour
 
             if(idx == 0)
             {
-                playerPosition.position = new Vector3(x_pos, 5, y_pos);
+                playerPosition.position = new Vector3(gridOffset*x_pos, 5, gridOffset*y_pos);
             }
 
             gridState[x_pos, y_pos] = true;

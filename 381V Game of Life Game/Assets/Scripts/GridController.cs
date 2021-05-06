@@ -13,7 +13,7 @@ public class GridController : MonoBehaviour
     private int[,] aliveCounts;
     private int gridx;
     private int gridy;
-    public bool wrapGrid;
+    private bool wrapGrid;
     private float nextUpdateTime = float.PositiveInfinity;
 
     public GameObject gridObject;

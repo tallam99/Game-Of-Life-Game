@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 1973274466}
-  message: you died bitch lol
+  message: More like Game of Death...
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,10 +499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa23778f04f58ea49bb4a6d6b39340e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wrapGrid: 0
   gridObject: {fileID: 760770958}
   gridObjectTransparent: {fileID: 262493258}
-  gridOffset: 1.75
+  gridOffset: 2
   gridOrigin: {x: 0, y: 0, z: 0}
   updatePeriod: 1
   transparentIter: 5
@@ -532,8 +531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827e7a8edf83dce4da1919510d8cbd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input_path: Assets/Levels/1_blinkers.txt
+  input_path: Assets/Levels/9_pentadecathlon.txt
   playerPosition: {fileID: 1310673433}
+  gridOffset: 2
 --- !u!114 &908237416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1000, y: 1, z: 1000}
-  m_Center: {x: 0, y: -5, z: 0}
+  m_Center: {x: 0, y: -20, z: 0}
 --- !u!4 &1775397409
 Transform:
   m_ObjectHideFlags: 0
