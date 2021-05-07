@@ -11,4 +11,16 @@ public class MenuMusicDriver : MonoBehaviour
     {
         musicAudioData.Play();
     }
+
+    void Update()
+    {
+        if(PlayerPrefs.GetInt("music") == 0)
+        {
+            musicAudioData.mute = true;
+        }
+        else
+        {
+            musicAudioData.mute = false;
+        }
+    }
 }

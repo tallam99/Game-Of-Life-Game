@@ -2220,7 +2220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultySlider: {fileID: 1583520167}
   soundToggle: {fileID: 1757477005}
-  musicToggle: {fileID: 0}
+  musicToggle: {fileID: 1278659342}
   levelDropdown: {fileID: 1540343662}
 --- !u!1 &1024779888
 GameObject:
