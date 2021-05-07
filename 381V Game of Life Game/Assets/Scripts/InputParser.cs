@@ -19,7 +19,7 @@ public class InputParser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        reader = new StreamReader(Application.dataPath + "/Levels/" + PlayerPrefs.GetString("level"));
+        reader = new StreamReader(Application.streamingAssetsPath + "/Levels/" + PlayerPrefs.GetString("level"));
         string line;
 
         // Make sure file isn't empty
