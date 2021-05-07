@@ -13,7 +13,7 @@ public class OptionsMenuDriver : MonoBehaviour
 
     public void Start()
     {
-        DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/Levels/");
+        DirectoryInfo di = new DirectoryInfo(Application.dataPath + "/Resources/Levels/");
         FileInfo[] files = di.GetFiles("*.txt");
         List<string> fnames = new List<string>();
 

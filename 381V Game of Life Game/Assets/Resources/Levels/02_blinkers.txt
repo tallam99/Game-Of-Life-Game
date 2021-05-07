@@ -1,0 +1,24 @@
+# Blinkers
+9 9 # Grid size
+0 # Wrap grid
+
+# Initial Configuration
+12 # Number of alive cells
+2 2
+1 2
+3 2
+5 2
+6 2
+7 2
+2 6
+3 6
+4 6
+5 6
+6 6
+7 6
+
+# Game of Life Rules
+3 # Number of rules
+0 3
+1 2
+1 3
