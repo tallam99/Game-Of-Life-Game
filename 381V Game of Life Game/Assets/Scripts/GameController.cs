@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 
     public AudioSource jumpAudioData;
     public AudioSource switchAudioData;
+    public AudioSource musicAudioData;
 
     private void Start()
     {
@@ -22,6 +23,17 @@ public class GameController : MonoBehaviour
             switchAudioData.mute = false;
             jumpAudioData.volume = 1.0f;
             switchAudioData.volume = 1.0f;
+        }
+
+        if (PlayerPrefs.GetInt("music") == 0)
+        {
+            musicAudioData.mute = true;
+        }
+        else
+        {
+            musicAudioData.mute = false;
+            musicAudioData.volume = 1.0f;
+            musicAudioData.Play();
         }
     }
 
