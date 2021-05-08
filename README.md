@@ -21,8 +21,7 @@ This repository includes builds for Windows and macOS in the "Windows Builds" an
 
 **Known Bugs**
 
-- Occassionally the level will drop the player in the wrong place. Restart the level with R until this doesn't occur.
-- The dropdown menu for level selection of the options screen does not display text properly.
+- Occassionally the level will drop the player in the wrong place. Restart the level with R until this doesn't occur. This sounds like it would be easy to fix, but it is surprisingly challenging...
 
 # Developers
 

@@ -6,9 +6,16 @@ using UnityEngine.UI;
 // used tutorial https://youtu.be/ulxXGht5D2U
 public class CountdownController : MonoBehaviour
 {
+    public static CountdownController instance;
+
     public Text countdownText;
     public int countdownTime;
     public string message;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
