@@ -931,10 +931,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridObject: {fileID: 760770958}
   gridObjectTransparent: {fileID: 7235234510535050265}
-  gridOffset: 2
   gridOrigin: {x: 0, y: 0, z: 0}
   updatePeriod: 1
-  transparentIter: 5
+  transparentIter: 11
   switchAudioData: {fileID: 1584677103}
 --- !u!4 &908237413
 Transform:
@@ -980,6 +979,7 @@ MonoBehaviour:
   jumpAudioData: {fileID: 537663733}
   switchAudioData: {fileID: 1584677103}
   musicAudioData: {fileID: 223964126}
+  gameActive: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,7 +1418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310673431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: -1, y: 5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2019351006}

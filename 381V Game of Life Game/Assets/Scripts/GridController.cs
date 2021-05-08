@@ -13,12 +13,12 @@ public class GridController : MonoBehaviour
     private int[,] aliveCounts;
     private int gridx;
     private int gridy;
+    private float gridOffset;
     private bool wrapGrid;
     private float nextUpdateTime = float.PositiveInfinity;
 
     public GameObject gridObject;
     public GameObject gridObjectTransparent;
-    public float gridOffset;
     public Vector3 gridOrigin;
     public float updatePeriod;
     public int transparentIter;
@@ -47,27 +47,32 @@ public class GridController : MonoBehaviour
         }
     }
 
-    public void setGridState(bool[,] gridState)
+    public void SetGridState(bool[,] gridState)
     {
         this.gridState = gridState;
     }
 
-    public void setRuleset(bool[,] ruleset)
+    public void SetRuleset(bool[,] ruleset)
     {
         this.ruleset = ruleset;
     }
 
-    public void setGridX(int gridx)
+    public void SetGridX(int gridx)
     {
         this.gridx = gridx;
     }
 
-    public void setGridY(int gridy)
+    public void SetGridY(int gridy)
     {
         this.gridy = gridy;
     }
 
-    public void setWrapGrid(bool wrapGrid)
+    public void SetGridOffset(float gridOffset)
+    {
+        this.gridOffset = gridOffset;
+    }
+
+    public void SetWrapGrid(bool wrapGrid)
     {
         this.wrapGrid = wrapGrid;
     }

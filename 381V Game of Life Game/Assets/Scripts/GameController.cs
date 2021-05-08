@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public AudioSource jumpAudioData;
     public AudioSource switchAudioData;
     public AudioSource musicAudioData;
+    public bool gameActive;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class GameController : MonoBehaviour
     {
         TimerController.instance.StartTimer();
         GridController.instance.StartGrid();
+        gameActive = true;
     }
 
     public void EndGame()
@@ -53,5 +55,6 @@ public class GameController : MonoBehaviour
         GameOverController.instance.DisplayMessage();
         PlayerMovementController.instance.Die();
         CountdownController.instance.countdownText.gameObject.SetActive(false);
+        gameActive = false;
     }
 }

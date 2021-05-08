@@ -15,6 +15,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector3 lastPosition;
     private float totalDistance;
+    private Vector3 startPosition;
 
     public CharacterController controller;
     public float speed;
@@ -35,7 +36,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         playerAlive = true;
         totalDistance = 0;
-        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -43,6 +43,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (playerAlive)
         {
+            lastPosition = transform.position;
             is_grounded = Physics.CheckSphere(ground_check.position, ground_dist, ground_mask);
 
             if(is_grounded && velocity.y < 0)
@@ -54,13 +55,6 @@ public class PlayerMovementController : MonoBehaviour
             z = Input.GetAxis("Vertical");
 
             Vector3 move_dir = transform.right * x + transform.forward * z;
-
-            float distance = Vector3.Distance(lastPosition, transform.position);
-            totalDistance += distance;
-            lastPosition = transform.position;
-
-            distance += Mathf.Sqrt(move_dir.x * move_dir.x + move_dir.z + move_dir.z);
-
             controller.Move(move_dir * speed * Time.deltaTime);
 
             if (Input.GetButtonDown("Jump") && is_grounded)
@@ -72,14 +66,30 @@ public class PlayerMovementController : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
 
             controller.Move(velocity * Time.deltaTime);
+
+            // this is a super weird hack for a start position glitch...
+            if (transform.position.x == -1.0 && transform.position.z == -1.0)
+            {
+                transform.position = startPosition;
+                lastPosition = transform.position;
+            }
+
+            // updated distance calculator to ignore y direction
+            if (GameController.instance.gameActive)
+            {
+                Vector3 currentNoY = transform.position;
+                Vector3 lastNoY = lastPosition;
+                currentNoY.y = 0f;
+                lastNoY.y = 0f;
+                totalDistance += Vector3.Distance(lastNoY, currentNoY);
+            }
         }
     }
 
-    public void SetCoors(float x, float z)
+    public void SetStart(Vector3 start)
     {
-        this.x = x;
-        this.z = z;
-        this.lastPosition = new Vector3(x, 5, z);
+        transform.position = start;
+        startPosition = start;
     }
 
     public float GetDistance()

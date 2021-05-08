@@ -36,8 +36,9 @@ public class InputParser : MonoBehaviour
         gridx = Int32.Parse(gridims[0]);
         gridy = Int32.Parse(gridims[1]);
 
-        GridController.instance.setGridX(gridx);
-        GridController.instance.setGridY(gridy);
+        GridController.instance.SetGridX(gridx);
+        GridController.instance.SetGridY(gridy);
+        GridController.instance.SetGridOffset(gridOffset);
         gridState = new bool[gridx, gridy];
 
         // Wrap grid boolean
@@ -50,7 +51,7 @@ public class InputParser : MonoBehaviour
         {
             wrapGrid = true;
         }
-        GridController.instance.setWrapGrid(wrapGrid);
+        GridController.instance.SetWrapGrid(wrapGrid);
 
         do
         {
@@ -71,8 +72,7 @@ public class InputParser : MonoBehaviour
 
             if(idx == 0)
             {
-                playerPosition.position = new Vector3(gridOffset*x_pos, 5, gridOffset*y_pos);
-                PlayerMovementController.instance.SetCoors(gridOffset*x_pos, gridOffset*y_pos);
+                PlayerMovementController.instance.SetStart(new Vector3(gridOffset*x_pos, 5, gridOffset*y_pos));
             }
 
             gridState[x_pos, y_pos] = true;
@@ -96,8 +96,8 @@ public class InputParser : MonoBehaviour
 
         reader.Close();
 
-        GridController.instance.setGridState(gridState);
-        GridController.instance.setRuleset(ruleset);
+        GridController.instance.SetGridState(gridState);
+        GridController.instance.SetRuleset(ruleset);
     }
 
     string readLine()
