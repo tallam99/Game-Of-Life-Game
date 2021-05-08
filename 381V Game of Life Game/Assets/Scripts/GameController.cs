@@ -24,17 +24,6 @@ public class GameController : MonoBehaviour
             jumpAudioData.volume = 1.0f;
             switchAudioData.volume = 1.0f;
         }
-
-        if (PlayerPrefs.GetInt("music") == 0)
-        {
-            musicAudioData.mute = true;
-        }
-        else
-        {
-            musicAudioData.mute = false;
-            musicAudioData.volume = 1.0f;
-            musicAudioData.Play();
-        }
     }
 
     private void Awake()
@@ -46,6 +35,16 @@ public class GameController : MonoBehaviour
     {
         TimerController.instance.StartTimer();
         GridController.instance.StartGrid();
+        if (PlayerPrefs.GetInt("music") == 0)
+        {
+            musicAudioData.mute = true;
+        }
+        else
+        {
+            musicAudioData.mute = false;
+            musicAudioData.volume = 1.0f;
+            musicAudioData.Play();
+        }
     }
 
     public void EndGame()
