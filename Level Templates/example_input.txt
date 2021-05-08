@@ -1,0 +1,21 @@
+# Coments denoted by hashtag
+# This example should create a glider with the default GoL ruleset and let it travel over a 20 by 20 grid
+20 20 # Size of the play area (encodes x and y dimensions of the grid)
+1 # boolean to wrap grid, 0 encodes no wrap, 1 encodes wrap
+
+# This section is for defining the initial configuration
+5 # Number of alive cells in the initial grid
+0 0 # Coordinates of alive cells denoted by x coor, then space, then y coor (0-xdim-1, 0->ydim-1)
+1 1
+2 0
+2 1
+1 2
+
+# This section is for defining the rule set
+# Rules determine whether a cell should become alive or dead the next iteration
+# This depends on the previous state of the cell and number of alive neighbors
+# Only specify rules that result in an alive cell, all other possible rules will assume dead cells
+3 # Number of rules
+0 3 # First number denotes the previous state of the cell, second is the number of alive neighbors
+1 2
+1 3

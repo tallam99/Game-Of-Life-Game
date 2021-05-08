@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17338704, g: 0.216739, b: 0.2988083, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338659, g: 0.21673836, b: 0.29880747, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827e7a8edf83dce4da1919510d8cbd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input_path: Assets/Levels/9_pentadecathlon.txt
+  input_path: Assets/Levels/1 Gliders.txt
   playerPosition: {fileID: 1310673433}
   gridOffset: 2
 --- !u!114 &908237416

@@ -72,6 +72,7 @@ public class InputParser : MonoBehaviour
             if(idx == 0)
             {
                 playerPosition.position = new Vector3(gridOffset*x_pos, 5, gridOffset*y_pos);
+                PlayerMovementController.instance.SetCoors(gridOffset*x_pos, gridOffset*y_pos);
             }
 
             gridState[x_pos, y_pos] = true;

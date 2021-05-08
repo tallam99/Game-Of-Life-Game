@@ -75,6 +75,13 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    public void SetCoors(float x, float z)
+    {
+        this.x = x;
+        this.z = z;
+        this.lastPosition = new Vector3(x, 5, z);
+    }
+
     public float GetDistance()
     {
         return totalDistance;

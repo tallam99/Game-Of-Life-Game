@@ -1,0 +1,25 @@
+# Middle Weight Space Ship
+12 11 # Grid size
+1 # Wrap grid
+
+# Initial Configuration
+13 # Number of alive cells
+7 6
+2 4
+3 4
+4 4
+5 4
+6 4
+7 4
+7 5
+6 7
+4 8
+3 8
+1 7
+1 5
+
+# Game of Life Rules
+3 # Number of rules
+0 3
+1 2
+1 3

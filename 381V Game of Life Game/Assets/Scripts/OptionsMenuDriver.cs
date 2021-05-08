@@ -19,7 +19,7 @@ public class OptionsMenuDriver : MonoBehaviour
 
         foreach(FileInfo file in files)
         {
-            fnames.Add(file.Name);  
+            fnames.Add(file.Name);
         }
 
         levelDropdown.ClearOptions();

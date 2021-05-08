@@ -1,0 +1,22 @@
+# Gliders
+8 8 # Grid size
+1 # Wrap grid
+
+# Initial Configuration
+10 # Number of alive cells
+6 1
+6 2
+6 3
+5 1
+4 2
+2 5
+2 6
+2 7
+1 5
+0 6
+
+# Game of Life Rules
+3 # Number of rules
+0 3
+1 2
+1 3
